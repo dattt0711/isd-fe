@@ -35,7 +35,9 @@ export default function DetailProduct(props) {
     const dataInfo = localStorage.getItem('USER_INFO');
     const userObjId = JSON.parse(dataInfo)._id;
     const [openDialog, setOpenDialog] = useState(false);
+
     const [quantity, setQuantity] = useState(1);
+
     const [reviewForm, setReviewForm] = useState(initialValue);
 
     const handleOnChange = (event) => {

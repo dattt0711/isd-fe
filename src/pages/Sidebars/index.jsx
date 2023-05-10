@@ -26,6 +26,7 @@ import Sidebar from './Drawer';
 export default function MenuAppBar() {
   const listProducts = useSelector((state) => state.carts.listProducts);
   const isLoading = useSelector((state) => state.carts.isLoading);
+  const infoLogin = useSelector((state) => state.login.infoLogin);
 
   const dispatch = useDispatch();
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -65,6 +66,11 @@ export default function MenuAppBar() {
     if (userInfo) {
       if (userInfo.isAdmin) setIsAdmin(true);
     }
+    // console.log(infoLogin, 'infoLogin')
+    // if (infoLogin) {
+    //   setAuth(true);
+    //   if (infoLogin.isAdmin) setIsAdmin(true);
+    // }
   }, [])
   const handleLogout = () => {
     localStorage.clear();

@@ -47,18 +47,17 @@ const InfoContainer = (props) => {
     const [date, setDate] = useState(new Date());
     const [dataInput, setDataInput] = useState(initialValue);
     const userObjId = JSON.parse(localStorage.getItem('USER_INFO'))._id;
-    const handleOnChange = (event) => {
-        setDataInput({
-            ...dataInput,
-            [event.target.name]: event.target.value,
-        })
-    }
+
+
+
     useEffect(() => {
+        // Call api user info
         dispatch(fetchInfoUser({
             params: userObjId,
         }))
     }, [])
     useEffect(() => {
+        // Check data from api, set into input
         if (userData) {
             setDataInput({
                 fullName: userData?.fullName,
@@ -72,6 +71,7 @@ const InfoContainer = (props) => {
             }
         }
     }, [userData])
+    // Send data update
     const handleSave = () => {
         const paramsSubmit = {};
         paramsSubmit.userObjId = userObjId;
@@ -83,6 +83,13 @@ const InfoContainer = (props) => {
         dispatch(fetchUpdateUser({
             params: paramsSubmit,
         }))
+    }
+    // Watch change of user on input
+    const handleOnChange = (event) => {
+        setDataInput({
+            ...dataInput,
+            [event.target.name]: event.target.value,
+        })
     }
     return (
         <Main>
